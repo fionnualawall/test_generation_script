@@ -15,7 +15,7 @@ do
             echo "*** Starting processing for: $i $ii ***"
             cd $TESTGEN/test-generation-defects4j/framework/bin
             echo "*** Generating Test Suite ***"
-            $TESTGEN/test-generation-defects4j/framework/bin/run_evosuite.pl -p Lang -v "$a"b -n "$ii" -o $TESTGEN/"$testingZone" -c "$i"
+            $TESTGEN/test-generation-defects4j/framework/bin/run_evosuite.pl -p Lang -v "$a"f -n "$ii" -o $TESTGEN/"$testingZone" -c "$i"
             echo "*** Test Suite Generated ***"
             cd $TESTGEN/"$testingZone"/Lang/evosuite-"$i"/"$ii"
             dir_old=evosuite-"$i"
@@ -27,8 +27,8 @@ do
             cd "$dir_name"
             mkdir "$ii"
             cd $TESTGEN/"$testingZone"/Lang/"$dir_old"/"$ii"
-            file_old=Lang-"$a"b-"$dir_old"."$ii".tar.bz2
-            file_new=Lang-"$a"b-"$dir_name"."$ii".tar.bz2
+            file_old=Lang-"$a"f-"$dir_old"."$ii".tar.bz2
+            file_new=Lang-"$a"f-"$dir_name"."$ii".tar.bz2
             mv "$file_old" $TESTGEN/"$testingZone"/Lang/"$dir_name"/"$ii"/
             cd ..
             rmdir "$ii"
@@ -36,7 +36,7 @@ do
             mv "$file_old" "$file_new"
 
             echo "*** Fixing Test Suite ***"
-            $TESTGEN/test-generation-defects4j/framework/util/fix_test_suite.pl -p Lang -d . -v "$a"b
+            $TESTGEN/test-generation-defects4j/framework/util/fix_test_suite.pl -p Lang -d . -v "$a"f
             echo "*** Test Suite Fixed ***"
 			echo "*** Running Bug Detection ***"
             $TESTGEN/test-generation-defects4j/framework/bin/run_bug_detection.pl -p Lang -d . -o $TESTGEN/bug_detection_output
