@@ -6,7 +6,7 @@ arrayOfDuos=("METHODPAIR:OUTPUT" "METHODPAIR:CBRANCH" "OUTPUT:ONLYBRANCH" "METHO
 
 testingZone=testingZone40
 
-for a in {21..40}
+for a in {1..65}
 do
     for i in "${arrayOfDuos[@]}"
     do
