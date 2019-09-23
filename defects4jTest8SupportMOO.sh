@@ -4,7 +4,7 @@ arrayOfCoverageTypes=("EXCEPTION" "BRANCH" "CBRANCH" "STRONGMUTATION" "WEAKMUTAT
 
 arrayOfDuos=("METHODPAIR:OUTPUT" "METHODPAIR:CBRANCH" "OUTPUT:ONLYBRANCH" "METHOD:OUTPUT" "METHODPAIR:BRANCH" "OUTPUT:STATEMENT" "INPUT:OUTPUT" "METHODPAIR:MUTATION" "OUTPUT:MUTATION")
 
-testingZone=testingZone40
+testingZone=test_generation_output
 
 for a in {1..65}
 do
@@ -39,7 +39,7 @@ do
             $TESTGEN/test-generation-defects4j/framework/util/fix_test_suite.pl -p Lang -d . -v "$a"b
             echo "*** Test Suite Fixed ***"
 			echo "*** Running Bug Detection ***"
-            $TESTGEN/test-generation-defects4j/framework/bin/run_bug_detection.pl -p Lang -d . -o $TESTGEN/d4j_output
+            $TESTGEN/test-generation-defects4j/framework/bin/run_bug_detection.pl -p Lang -d . -o $TESTGEN/bug_detection_output
             echo "*** Bug Detection Run ***"
 			
 			echo "*** Cleaning Up Files ***"
@@ -49,7 +49,6 @@ do
             rm fix_test_suite.run.log
             cd ..
             rmdir "$ii"
-            ls
             cd ..
             rmdir "$dir_old"
             rmdir "$dir_name"
