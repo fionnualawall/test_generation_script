@@ -14,15 +14,17 @@ do
         do
             echo "*** Starting processing for: $i $ii ***"
             cd $TESTGEN/test-generation-defects4j/framework/bin
+            
             echo "*** Generating Test Suite ***"
             $TESTGEN/test-generation-defects4j/framework/bin/run_evosuite.pl -p Lang -v "$a"f -n "$ii" -o $TESTGEN/"$testingZone" -c "$i"
             echo "*** Test Suite Generated ***"
+
+            echo "*** Renaming Test Suite Files ***"
             cd $TESTGEN/"$testingZone"/Lang/evosuite-"$i"/"$ii"
             dir_old=evosuite-"$i"
             dir_name="${dir_old//:/}";
             cd ..
             cd ..
-
             mkdir "$dir_name"
             cd "$dir_name"
             mkdir "$ii"
@@ -38,6 +40,7 @@ do
             echo "*** Fixing Test Suite ***"
             $TESTGEN/test-generation-defects4j/framework/util/fix_test_suite.pl -p Lang -d . -v "$a"f
             echo "*** Test Suite Fixed ***"
+
 			echo "*** Running Bug Detection ***"
             $TESTGEN/test-generation-defects4j/framework/bin/run_bug_detection.pl -p Lang -d . -o $TESTGEN/bug_detection_output
             echo "*** Bug Detection Run ***"
