@@ -16,7 +16,7 @@ do
             cd $TESTGEN/test-generation-defects4j/framework/bin
             
             echo "*** Generating Test Suite ***"
-            $TESTGEN/test-generation-defects4j/framework/bin/run_evosuite.pl -p Lang -v "$a"f -n "$ii" -o $TESTGEN/"$testingZone" -c "$i"
+            $TESTGEN/test-generation-defects4j/framework/bin/run_evosuite.pl -p Lang -v "$a"f -n "$ii" -o $TESTGEN/"$testingZone" -c "$i" -a 600
             echo "*** Test Suite Generated ***"
 
             echo "*** Renaming Test Suite Files ***"
@@ -43,7 +43,7 @@ do
 
 			echo "*** Running Bug Detection ***"
             $TESTGEN/test-generation-defects4j/framework/bin/run_bug_detection.pl -p Lang -d . -o $TESTGEN/bug_detection_output
-            echo "*** Bug Detection Run ***"
+            echo "*** Bug Detection Complete ***"
 			
 			echo "*** Cleaning Up Files ***"
             rm "$file_new"
