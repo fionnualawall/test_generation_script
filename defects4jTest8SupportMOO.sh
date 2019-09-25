@@ -12,7 +12,7 @@ do
     for i in "${arrayOfDuos[@]}"
     do
         echo "*** Starting processing for criteria $i ***"
-        ii=0 # tracks the current iteration number
+        ii=1 # tracks the current iteration number
         success=0 # tracks the number of successful iterations i.e. where a test suite was generated
         while [ $success -lt 3 ];
         do
@@ -67,11 +67,11 @@ do
                 line="Lang,${a}f,${dir_name},${ii},Error,-"
                 file_path=$TESTGEN/bug_detection_output
                 echo $line >> ${file_path}/bug_detection
-                if [ $ii -eq 4 ] && [ $success -eq 0 ]; then
+                if [ $ii -eq 5 ] && [ $success -eq 0 ]; then
                     break
-                elif [ $ii -eq 9 ] && [ $success -eq 1 ]; then
+                elif [ $ii -eq 10 ] && [ $success -eq 1 ]; then
                     break
-                elif [ $ii -eq 14 ]; then
+                elif [ $ii -eq 15 ]; then
                     break
                 fi
             fi
