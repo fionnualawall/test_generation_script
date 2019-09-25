@@ -7,14 +7,14 @@ arrayOfDuos=("METHODPAIR:OUTPUT" "METHODPAIR:CBRANCH" "OUTPUT:ONLYBRANCH" "METHO
 testingZone=test_generation_output
 
 for a in {1..65}
-echo "*** Starting processing for Lang version $a ***"
 do
+    echo "*** Starting processing for Lang version $a ***"
     for i in "${arrayOfDuos[@]}"
-    echo "*** Starting processing for criteria $i ***"
     do
+        echo "*** Starting processing for criteria $i ***"
         ii=0 # tracks the current iteration number
         success=0 # tracks the number of successful iterations i.e. where a test suite was generated
-        while [ $success -lt 3];
+        while [ $success -lt 3 ];
         do
             echo "*** Starting iteration $ii for criteria $i ***"
             cd $TESTGEN/test-generation-defects4j/framework/bin
