@@ -53,10 +53,10 @@ do
                 echo "*** Bug Detection Complete ***"
                 
                 echo "*** Cleaning Up Files ***"
-                rm "$file_new"
-                rm fix_test_suite.compile.log
-                rm fix_test_suite.summary.log
-                rm fix_test_suite.run.log
+                mv "$file_new" $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
+                mv fix_test_suite.compile.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
+                mv fix_test_suite.summary.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
+                mv fix_test_suite.run.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
                 cd ..
                 rmdir "$ii"
                 cd ..
