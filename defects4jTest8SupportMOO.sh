@@ -6,6 +6,16 @@ arrayOfDuos=("METHODPAIR:OUTPUT" "METHODPAIR:CBRANCH" "OUTPUT:ONLYBRANCH" "METHO
 
 testingZone=test_generation_output
 
+# create a directory to store backups of the generated test suites
+mkdir test_suite_backup
+
+# create bug_detection file at this stage in case the first iteration of test generation fails
+cd $TESTGEN
+mkdir bug_detection_output
+cd bug_detection_output
+touch bug_detection
+echo "project_id,version_id,test_suite_source,test_id,test_classification,num_trigger" >> bug_detection
+
 for a in {1..65}
 do
     echo "*** Starting processing for Lang version $a ***"
@@ -25,8 +35,8 @@ do
             # check if a test suite was generated or not
             dir_old=evosuite-"$i"
             dir_name="${dir_old//:/}";
-            file=$TESTGEN/"$testingZone"/Lang/$dir_old/"$ii"/$dir_old/Lang-"$a"f-"$dir_old"."$ii".tar.bz2
-            if [ -f "$FILE" ]; then
+            file=$TESTGEN/"$testingZone"/Lang/$dir_old/"$ii"/Lang-"$a"f-"$dir_old"."$ii".tar.bz2
+            if [ -f "$file" ]; then
                 echo "*** Test Suite Successfully Generated ***"
                 ((success+=1))
 
@@ -53,10 +63,10 @@ do
                 echo "*** Bug Detection Complete ***"
                 
                 echo "*** Cleaning Up Files ***"
-                mv "$file_new" $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
-                mv fix_test_suite.compile.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
-                mv fix_test_suite.summary.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
-                mv fix_test_suite.run.log $TESTGEN/test_suite_backup/Lang/"$dir_name"/"$ii"/
+                mv $file_new $TESTGEN/test_suite_backup
+                rm fix_test_suite.compile.log
+                rm fix_test_suite.summary.log
+                rm fix_test_suite.run.log
                 cd ..
                 rmdir "$ii"
                 cd ..
