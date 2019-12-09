@@ -22,7 +22,7 @@ Before starting the setup, ensure that the following are installed on the machin
 
 4. Clone the test_generation_script repository as follows & enter valid credentials when prompted:
 
-    ```git clone (add link)```
+    ```git clone https://github.com/fionnualawall/test_generation_script.git```
 
 ## EvoSuite Setup
 Follow the below steps to set up EvoSuite:
